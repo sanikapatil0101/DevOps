@@ -94,7 +94,7 @@ Example config:
 
 ```nginx
 events {
-    # Event directives
+    # Event directives ???not needed
 }
 
 http {
