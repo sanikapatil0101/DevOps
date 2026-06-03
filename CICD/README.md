@@ -313,17 +313,15 @@ pm2 startup
 > **PM2 = Process manager for Node.js apps with background running + auto restart.**
 
 
-# Simple CI Script (GitHub Actions)
+# Simple CI Script — GitHub Actions
 
 Create file:
 
-```text id="61m0ys"
-.github/workflows/hello.yml
+```text id="wczf35"
+.github/workflows/test.yml
 ```
 
-Code:
-
-```yaml id="2nkg9s"
+```yaml id="8ep29u"
 name: GitHub Actions Demo
 
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
@@ -335,21 +333,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "🎉 The job was automatically triggered."
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
 
-      - run: echo "🖥️ Running on ${{ runner.os }}"
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
 
-      - run: echo "🌱 Branch: ${{ github.ref }}"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
-      - name: Checkout repository code
+      - name: Check out repository code
         uses: actions/checkout@v4
 
-      - run: echo "💡 Repository cloned successfully."
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
 
-      - name: List files in repository
-        run: ls ${{ github.workspace }}
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
 
-      - run: echo "✅ Job status is ${{ job.status }}"
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+```
+
 ```
 
 ## How it works
