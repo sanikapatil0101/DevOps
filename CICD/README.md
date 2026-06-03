@@ -312,3 +312,51 @@ pm2 startup
 > **Process Management = Managing running programs.**
 > **PM2 = Process manager for Node.js apps with background running + auto restart.**
 
+
+# Simple CI Script (GitHub Actions)
+
+Create file:
+
+```text id="61m0ys"
+.github/workflows/hello.yml
+```
+
+Code:
+
+```yaml id="2nkg9s"
+name: GitHub Actions Demo
+
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on: [push]
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "🎉 The job was automatically triggered."
+
+      - run: echo "🖥️ Running on ${{ runner.os }}"
+
+      - run: echo "🌱 Branch: ${{ github.ref }}"
+
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - run: echo "💡 Repository cloned successfully."
+
+      - name: List files in repository
+        run: ls ${{ github.workspace }}
+
+      - run: echo "✅ Job status is ${{ job.status }}"
+```
+
+## How it works
+
+* `on: [push]` → Runs on every git push
+* `runs-on: ubuntu-latest` → Uses Ubuntu runner
+* `actions/checkout@v4` → Clones repo code
+* `ls` → Shows repository files
+* `${{ ... }}` → GitHub variables
+
